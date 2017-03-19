@@ -26,8 +26,6 @@ var j = schedule.scheduleJob(rule, function(){
   	requestify.get('https://api.coinmarketcap.com/v1/ticker/').then(function(response) {
     // Get the response body
 
-    	console.log('back')
-
 	    var ticker = response.getBody();
 
 	    connection.connect(function(err) {
@@ -50,8 +48,6 @@ var j = schedule.scheduleJob(rule, function(){
 		    
 		    var keys = "(" + Object.keys(ticker[0]).join() + ")";
 	    	var sql = "INSERT INTO tickers " + keys + " VALUES ?";
-		    
-		    console.log(values[22]);
 
 			var query = connection.query(sql, [values], function (error) {
 			  if (error) throw error;
